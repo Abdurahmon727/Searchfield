@@ -76,6 +76,9 @@ class SearchField<T> extends StatefulWidget {
   /// Defines whether to enable the searchfield defaults to `true`
   final bool? enabled;
 
+  ///
+  final EdgeInsets? scrollPadding;
+
   /// Defines whether to show the searchfield as readOnly
   final bool readOnly;
 
@@ -316,6 +319,7 @@ class SearchField<T> extends StatefulWidget {
     this.controller,
     this.emptyWidget = const SizedBox(),
     this.enabled,
+    this.scrollPadding,
     this.focusNode,
     @Deprecated(
       'Use SearchInputDecoration.hintText instead.',
@@ -488,6 +492,7 @@ class _SearchFieldState<T> extends State<SearchField<T>> {
   // Suggestion item that is currently highlighted/selected
   int highlightIndex = -1;
   OverlayEntry? _overlayEntry;
+
   @override
   void initState() {
     super.initState();
@@ -777,6 +782,7 @@ class _SearchFieldState<T> extends State<SearchField<T>> {
   /// length of the suggestions
   int length = 0;
   double scrolloffset = 0.0;
+
   Widget _suggestionsBuilder() {
     return StreamBuilder<List<SearchFieldListItem<T>?>?>(
       stream: suggestionStream.stream,
@@ -1013,6 +1019,7 @@ class _SearchFieldState<T> extends State<SearchField<T>> {
 
   /// when suggestions are searched, the search results are temporarily stored here
   var filteredResult = <SearchFieldListItem<T>>[];
+
   @override
   Widget build(BuildContext context) {
     if (!widget.dynamicHeight) {
@@ -1044,6 +1051,7 @@ class _SearchFieldState<T> extends State<SearchField<T>> {
           child: CompositedTransformTarget(
             link: _layerLink,
             child: TextFormField(
+              scrollPadding: widget.scrollPadding ?? const EdgeInsets.all(20),
               key: key,
               contextMenuBuilder: (context, state) {
                 if (widget.contextMenuBuilder != null) {
