@@ -23,6 +23,7 @@ class SFListview<T> extends StatefulWidget {
   final int maxSuggestionsInViewPort;
   final TextStyle? suggestionStyle;
   final Function(double, double)? onScroll;
+
   SFListview(
       {super.key,
       this.maxHeight,
@@ -47,6 +48,7 @@ class SFListview<T> extends StatefulWidget {
 
 class _SFListviewState<T> extends State<SFListview<T>> {
   late final ScrollController _scrollController;
+
   @override
   void initState() {
     super.initState();

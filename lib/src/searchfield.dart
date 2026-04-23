@@ -4,40 +4,13 @@ import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:searchfield/src/decoration.dart';
+import 'package:searchfield/src/scrollbar_decoration.dart';
 import 'package:searchfield/src/input_decoration.dart';
 import 'package:searchfield/src/key_intents.dart';
-import 'package:searchfield/src/listview.dart';
+import 'package:searchfield/src/sf_listview.dart';
 import 'package:searchfield/src/searchfield_list_item.dart';
 
-enum Suggestion {
-  /// shows suggestions when searchfield is brought into focus
-  expand,
-
-  /// keeps the suggestion overlay hidden until
-  /// first letter is entered
-  hidden,
-}
-
-// enum to define the Focus of the searchfield when a suggestion is tapped
-enum SuggestionAction {
-  /// shift to next focus
-  next,
-
-  /// close keyboard and unfocus (Default)
-  unfocus,
-}
-
-enum SuggestionDirection {
-  /// show suggestions below the searchfield
-  down,
-
-  /// show suggestions above the searchfield
-  up,
-
-  /// suggestions will be shown based on the available space
-  flex
-}
+import 'enums.dart';
 
 /// A widget that displays a searchfield and a list of suggestions
 /// when the searchfield is brought into focus
